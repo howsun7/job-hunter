@@ -1,7 +1,7 @@
 {
     "_meta": {
         "hash": {
-            "sha256": "9f4566c7d4f1e8a39f16cc9a5678b85aad7fe238f87e526eff1b0b7c4be4395e"
+            "sha256": "a98434a135e900c620ccf0da96c67d3996db8680e2223c5ef1f12dda8010670a"
         },
         "pipfile-spec": 6,
         "requires": {
@@ -255,6 +255,14 @@
             "markers": "python_version >= '2.7' and python_version not in '3.0, 3.1, 3.2, 3.3, 3.4, 3.5'",
             "version": "==1.4.45"
         },
+        "sqlalchemy-utils": {
+            "hashes": [
+                "sha256:9da26a9b20c6979167772ba5dc2a1d01265648f18c82995f082279a399ea308b",
+                "sha256:b37240917d81c14fe1b6e5096a402bace472b179121384e47c10d854dbf5af92"
+            ],
+            "index": "pypi",
+            "version": "==0.39.0"
+        },
         "werkzeug": {
             "hashes": [
                 "sha256:7ea2d48322cc7c0f8b3a215ed73eabd7b5d75d0b50e31ab006286ccff9e00b8f",
@@ -294,7 +302,7 @@
                 "sha256:6db30c5ded9815d813932c04c2f85a360bcdd35fed496f4d8f35495ef0a261b6",
                 "sha256:c033fd0edb91000a7f09527fe5c75321878f98322a77ddcc81adbd83724afb7b"
             ],
-            "markers": "python_full_version >= '3.7.0'",
+            "markers": "python_version >= '3.7'",
             "version": "==5.11.4"
         },
         "lazy-object-proxy": {
@@ -319,7 +327,7 @@
                 "sha256:eac3a9a5ef13b332c059772fd40b4b1c3d45a3a2b05e33a361dee48e54a4dad0",
                 "sha256:eb329f8d8145379bf5dbe722182410fe8863d186e51bf034d2075eb8d85ee25b"
             ],
-            "markers": "python_full_version >= '3.7.0'",
+            "markers": "python_version >= '3.7'",
             "version": "==1.8.0"
         },
         "mccabe": {
@@ -335,7 +343,7 @@
                 "sha256:83c8f6d04389165de7c9b6f0c682439697887bca0aa2f1c87ef1826be3584490",
                 "sha256:e1fea1fe471b9ff8332e229df3cb7de4f53eeea4998d3b6bfff542115e998bd2"
             ],
-            "markers": "python_full_version >= '3.7.0'",
+            "markers": "python_version >= '3.7'",
             "version": "==2.6.2"
         },
         "pylint": {
