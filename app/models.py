@@ -1,7 +1,6 @@
 from flask_sqlalchemy import SQLAlchemy
 from sqlalchemy_utils import types
 
-
 db = SQLAlchemy()
 
 job_skill = db.Table(
@@ -29,7 +28,7 @@ class Skill(Base):
     name = db.Column(db.String(80), nullable=False)
 
 class Company(Base):
-    id = db.Column(db.Integer, primary_ke=True)
+    id = db.Column(db.Integer, primary_key=True)
     name = db.Column(db.String(100), nullable=False)
     jobs = db.relationship('Job', backref='company')
 
