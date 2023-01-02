@@ -1,4 +1,5 @@
 # project specific
+.flaskenv
 *.db
 
 # Byte-compiled / optimized / DLL files
