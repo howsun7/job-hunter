@@ -23,13 +23,21 @@ class Job(Base):
     company_id = db.Column(db.Integer, db.ForeignKey('company.id'))
     skills = db.relationship('Skill', secondary=job_skill, backref='jobs')
 
+    def __repr__(self):
+        return f'{self.id}: {self.title}'
+
 class Skill(Base):
     id = db.Column(db.Integer, primary_key=True)
     name = db.Column(db.String(80), nullable=False)
+
+    def __repr__(self):
+        return self.name
 
 class Company(Base):
     id = db.Column(db.Integer, primary_key=True)
     name = db.Column(db.String(100), nullable=False)
     jobs = db.relationship('Job', backref='company')
-
+    
+    def __repr__(self):
+        return self.name
 
