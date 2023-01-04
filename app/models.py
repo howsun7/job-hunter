@@ -1,3 +1,5 @@
+from sqlalchemy.orm.exc import NoResultFound
+from sqlalchemy.exc import InvalidRequestError
 from flask_sqlalchemy import SQLAlchemy
 from sqlalchemy_utils import types
 
@@ -9,6 +11,56 @@ job_skill = db.Table(
     db.Column('skill_id', db.Integer, db.ForeignKey('skill.id'))
 )
 
+
+class GetOrCreateMixin:
+    __table_args__ = {'extend_existing': True}
+
+    @classmethod
+    def get_or_create(cls, **kwargs):
+        """
+        Return an model object (instance).
+
+        Check if a particular model object exists in the model. If the model object 
+        exists, return that object; if not, create an model object and return it.
+        """
+
+        try:
+            instance = cls.get_instance(**kwargs)
+        except NoResultFound:
+            instance = cls.create_instance(**kwargs)
+
+        return instance
+
+    @classmethod 
+    def create_instance(cls, **kwargs):
+        try:
+            instance = cls(**kwargs)
+            db.session.add(instance)
+        except Exception:
+            raise
+
+        try: 
+            db.session.commit()
+        except Exception:
+            db.session.rollback()
+            raise 
+        
+        return instance
+
+    @classmethod
+    def get_instance(cls, **kwargs):
+        try:
+            instance = cls.query.filter_by(**kwargs).first()
+        except InvalidRequestError:
+            raise ValueError("property for {} does not exist".format(cls))
+        except Exception:
+            raise
+
+        if instance is None:
+            raise NoResultFound
+
+        return instance
+        
 class Base(db.Model):
     __abstract__ = True
 
@@ -26,14 +78,14 @@ class Job(Base):
     def __repr__(self):
         return f'{self.id}: {self.title}'
 
-class Skill(Base):
+class Skill(GetOrCreateMixin, Base):
     id = db.Column(db.Integer, primary_key=True)
     name = db.Column(db.String(80), nullable=False)
 
     def __repr__(self):
         return self.name
 
-class Company(Base):
+class Company(GetOrCreateMixin, Base):
     id = db.Column(db.Integer, primary_key=True)
     name = db.Column(db.String(100), nullable=False)
     jobs = db.relationship('Job', backref='company')
