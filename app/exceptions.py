@@ -4,3 +4,9 @@ class EmptyCollectionError(Exception):
 
 class EmptyFieldsError(Exception):
     pass
+
+class HandlerTypeNotFoundError(Exception):
+    pass
+
+class QAHandlerDoesNotExistError(Exception):
+    pass
